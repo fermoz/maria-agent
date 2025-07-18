@@ -53,7 +53,7 @@ df = cargar_datos()
 st.sidebar.header("🔍 Filtros")
 palabra_clave = st.sidebar.text_input("Buscar palabra en título")
 pais = st.sidebar.selectbox("Filtrar por país", ["Todos"] + sorted(df["País"].unique().tolist()))
-# fecha_limite = st.sidebar.date_input("Mostrar hasta fecha límite", value=datetime.today())
+fecha_limite = st.sidebar.date_input("Mostrar hasta fecha límite", value=datetime.today())
 
 # Aplicar filtros
 df_filtrado = df.copy()
@@ -65,7 +65,7 @@ if pais != "Todos":
     df_filtrado = df_filtrado[df_filtrado["País"] == pais]
 
 df_filtrado["Fecha límite"] = pd.to_datetime(df_filtrado["Fecha límite"], errors="coerce")
-df_filtrado = df_filtrado[df_filtrado["Fecha límite"] <= pd.to_datetime(fecha_limite)]
+# df_filtrado = df_filtrado[df_filtrado["Fecha límite"] <= pd.to_datetime(fecha_limite)]
 
 # Mostrar tabla
 st.markdown(f"### {len(df_filtrado)} oportunidades encontradas")
